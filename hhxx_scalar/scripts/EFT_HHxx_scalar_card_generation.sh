@@ -3,10 +3,10 @@
 scriptname=`basename $0`
 
 # name of the run
-name=EFT_HHxg5x
+name=EFT_HHxx_scalar
 
 ## customercards
-custom=EFT_HHxg5x_customizecards.dat 
+custom=EFT_HHxx_scalar_customizecards.dat 
 
 export PRODHOME=`pwd`
 CARDSDIR=${PRODHOME}/cards
