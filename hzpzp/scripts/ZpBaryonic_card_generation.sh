@@ -38,6 +38,15 @@ if [ ! -e $CARDSDIR/$run ]; then
     exit 1;
 fi
 
+extra=extramodels.dat
+########################
+#Locating the extramodels card
+########################
+if [ ! -e $CARDSDIR/$extra ]; then
+    echo $CARDSDIR/$extra " does not exist!"
+    exit 1;
+fi
+
 ########################
 #Run the code-generation step to create the process directory
 ########################
@@ -84,6 +93,7 @@ do
 	    sed -e 's/'$name'/'${newname}'/g' $CARDSDIR/${name}_proc_card.dat > $dir/${newname}_proc_card.dat
 	    sed -e 's/MZP/'$Zpmass'/g' -e 's/MCHI/'$chimass'/g' -e 's/WZP/'$Zpwidth'/g' $CARDSDIR/$custom > $dir/${newname}_customizecards.dat
 	    cp $CARDSDIR/run_card.dat $dir/${newname}_run_card.dat
+	    cp $CARDSDIR/extramodels.dat $dir/${newname}_extramodels.dat
 	fi
     done
 done
