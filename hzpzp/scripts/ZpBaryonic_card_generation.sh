@@ -54,12 +54,12 @@ topdir=$CARDSDIR/$name
 mkdir $topdir
 
 
-Zpmassfile=inputs/input_zprimemass
-Zpwidthfile=inputs/input_zprimewidth
+Zpmassfile=inputs_${name}/input_zprimemass
+Zpwidthfile=inputs_${name}/input_zprimewidth
 lastZppoint=`cat $Zpmassfile | wc -l`
 echo "There are "$lastZppoint" Zprime mass points"
 
-chimassfile=inputs/input_chi
+chimassfile=inputs_${name}/input_chi
 lastchipoint=`cat $chimassfile | wc -l`
 echo "There are "$lastchipoint" chi mass points"
 
