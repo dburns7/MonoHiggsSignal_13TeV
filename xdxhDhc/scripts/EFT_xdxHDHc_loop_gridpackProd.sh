@@ -20,19 +20,31 @@ chimassfile=inputs_${name}/input_chi
 lastchipoint=`cat $chimassfile | wc -l`
 echo "There are "$lastchipoint" chi mass points"
 
-iterchi=0
-while [ $iterchi -lt $lastchipoint ]; 
+lambdafile=inputs_${name}/input_lambda
+lastlambdapoint=`cat $lambdafile | wc -l`
+echo "There are "$lastlambdapoint" cutoff points"
+
+iteration=0
+iterlambda=0
+while [ $iterlambda -lt $lastlambdapoint ];
 do
-	iterchi=$(( iterchi + 1 ))
+  iterlambda=$(( iterlambda + 1))
+  lambda=(`head -n $iterlambda $lambdafile  | tail -1 | awk '{print $1}'`) 
+  iterchi=0
+  while [ $iterchi -lt $lastchipoint ]; 
+  do
+  	iterchi=$(( iterchi + 1 ))
         chimass=(`head -n $iterchi $chimassfile  | tail -1 | awk '{print $1}'`)
-	
+	iteration=$(( iteration + 1 ))
 	    echo ""
 	    echo "Producing gridpacks for chi mass     = "$chimass" GeV "
+	    echo "Producing gridpacks for Lambda       = "$lambda" GeV "
 	    echo ""
-	    process=${name}_MChi${chimass}
+	    process=${name}_MChi${chimass}_Lambda${lambda}
 	    dir=$CARDSDIR/$name/$process
 	    ls $dir
-	    #bsub -q $queue $PWD/runJob.sh $PWD $process $dir
+	    bsub -q $queue $PWD/runJob.sh $PWD $process $dir Higgs_xdxhDhc_UFO.tar.gz
+  done
 done
 
-echo "There are "$iterchi" mass points in total."
+echo "There are "$iteration" mass points in total."

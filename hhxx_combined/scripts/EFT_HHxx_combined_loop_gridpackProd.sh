@@ -32,7 +32,7 @@ do
 	    process=${name}_MChi${chimass}
 	    dir=$CARDSDIR/$name/$process
 	    ls $dir
-	    #bsub -q $queue $PWD/runJob.sh $PWD $process $dir
+	    bsub -q $queue $PWD/runJob.sh $PWD $process $dir Higgs_hhxx_combined_UFO.tar.gz
 done
 
 echo "There are "$iterchi" mass points in total."

@@ -50,7 +50,7 @@ do
 	    process=${name}_MZp${Zpmass}_MChi${chimass}
 	    dir=$CARDSDIR/$name/$process
 	    ls $dir
-	    #bsub -q $queue $PWD/runJob.sh $PWD $process $dir Higgs_hzpzp_UFO.tar.gz
+	    bsub -q $queue $PWD/runJob.sh $PWD $process $dir Higgs_Zprime_UFO.tar.gz
 	fi
     done
 done
